@@ -1,78 +1,85 @@
-function parseInlineJSON(id) {
-  const scriptTag = document.getElementById(id);
-  return JSON.parse(scriptTag.textContent);
+async function loadActs() {
+  const [actsRes, colorsRes] = await Promise.all([
+    fetch('acts.json'),
+    fetch('stage-colors.json')
+  ]);
+  const acts = await actsRes.json();
+  const colorData = await colorsRes.json();
+  const colorMap = Object.fromEntries(colorData.map(c => [c.stage, c.color_rgb]));
+  renderGroupedActs(acts, colorMap);
 }
 
-const acts = parseInlineJSON("acts-data");
-
-function groupActsByStage(acts) {
+function renderGroupedActs(acts, colorMap) {
   const grouped = {};
-  acts.forEach((act, i) => {
+  acts.forEach(act => {
     if (!grouped[act.stage]) grouped[act.stage] = [];
-    grouped[act.stage].push({ ...act, index: i });
+    grouped[act.stage].push(act);
   });
-  for (const stage in grouped) {
-    grouped[stage].sort((a, b) => new Date(a.start) - new Date(b.start));
-  }
-  return grouped;
-}
 
-function renderGroupedActs(groupedActs) {
-  const container = document.getElementById('stages-container');
-  Object.keys(groupedActs).forEach(stage => {
-    const col = document.createElement('div');
-    col.className = 'stage-column';
+  Object.values(grouped).forEach(list => {
+    list.sort((a, b) => new Date(a.start) - new Date(b.start));
+  });
 
-    const title = document.createElement('h2');
-    title.textContent = stage;
-    col.appendChild(title);
+  const wrapper = document.getElementById('stage-wrapper');
 
-    groupedActs[stage].forEach(act => {
-      const div = document.createElement('div');
-      div.className = 'act-item';
-      const startTime = new Date(act.start).toLocaleString();
-      div.innerHTML = `
-        <label>
-          <input type="checkbox" data-index="${act.index}">
-          <strong>${act.artist}</strong><br/>
-          <small>${startTime}</small>
-        </label>
+  Object.keys(grouped).forEach(stage => {
+    const column = document.createElement('div');
+    column.className = 'stage-column';
+
+    const rgb = colorMap[stage] || [60, 60, 60];
+    column.style.backgroundColor = `rgb(${rgb.join(',')})`;
+
+    const heading = document.createElement('h2');
+    heading.textContent = stage;
+    heading.style.color = 'white';
+    column.appendChild(heading);
+
+    grouped[stage].forEach(act => {
+      const item = document.createElement('div');
+      item.className = 'act-item';
+
+      const label = document.createElement('label');
+      label.innerHTML = `
+        <input type="checkbox" data-artist="${act.artist}" data-start="${act.start}" data-end="${act.end}" data-stage="${act.stage}">
+        <strong>${act.artist}</strong><br/>
+        <small>${new Date(act.start).toLocaleString()} – ${new Date(act.end).toLocaleTimeString()}</small>
       `;
-      col.appendChild(div);
+
+      item.appendChild(label);
+      column.appendChild(item);
     });
 
-    container.appendChild(col);
+    wrapper.appendChild(column);
   });
 
-  document.getElementById('download-btn').addEventListener('click', () => downloadICS(acts));
+  document.getElementById('download-btn').addEventListener('click', () => downloadICS());
 }
 
-function downloadICS(acts) {
+function downloadICS() {
   const checkboxes = document.querySelectorAll('input[type=checkbox]');
   const cal = ics();
 
-  checkboxes.forEach((cb, i) => {
+  checkboxes.forEach(cb => {
     if (cb.checked) {
-      const act = acts[i];
-      const start = new Date(act.start);
-      const end = new Date(act.end);
+      const start = new Date(cb.dataset.start);
+      const end = new Date(cb.dataset.end);
       cal.addEvent(
-        act.artist,
-        act.stage,
+        cb.dataset.artist,
+        cb.dataset.stage,
         'Ferropolis',
         [
           start.getFullYear(),
           start.getMonth() + 1,
           start.getDate(),
           start.getHours(),
-          start.getMinutes(),
+          start.getMinutes()
         ],
         [
           end.getFullYear(),
           end.getMonth() + 1,
           end.getDate(),
           end.getHours(),
-          end.getMinutes(),
+          end.getMinutes()
         ]
       );
     }
@@ -81,5 +88,4 @@ function downloadICS(acts) {
   cal.download('hive-festival-2025');
 }
 
-const grouped = groupActsByStage(acts);
-renderGroupedActs(grouped);
+loadActs();

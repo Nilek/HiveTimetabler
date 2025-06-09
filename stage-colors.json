@@ -1,0 +1,11 @@
+[
+    { "stage": "Techno Castle", "color_rgb": [145, 20, 30] },
+    { "stage": "Groove Beach", "color_rgb": [180, 55, 120] },
+    { "stage": "Rage Cage", "color_rgb": [50, 50, 50] },
+    { "stage": "Psy Lagoon", "color_rgb": [30, 120, 120] },
+    { "stage": "Disco Forest", "color_rgb": [110, 30, 80] },
+    { "stage": "Talent Factory", "color_rgb": [155, 90, 40] },
+    { "stage": "HiTech Hive", "color_rgb": [195, 180, 40] },
+    { "stage": "Junkyard", "color_rgb": [200, 130, 0] }
+  ]
+  
