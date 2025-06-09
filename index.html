@@ -13,7 +13,7 @@
   </header>
 
   <main>
-    <section id="act-list"></section>
+    <div id="stages-container"></div>
     <button id="download-btn">🎧 Auswahl als .ics exportieren</button>
   </main>
 
@@ -21,7 +21,12 @@
     <small>Made with ❤️ for Ferropolis</small>
   </footer>
 
+  <!-- Deine Daten -->
+  <script src="acts.json" type="application/json" id="acts-data"></script>
+
+  <!-- Logik & ics -->
   <script src="https://cdn.jsdelivr.net/npm/ics@3.8.1/dist/index.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
+
