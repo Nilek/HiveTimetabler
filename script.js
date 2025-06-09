@@ -57,46 +57,57 @@ function renderGroupedActs(acts, colorMap) {
 
 function downloadICS() {
   const checkboxes = document.querySelectorAll('input[type=checkbox]');
-  const cal = ics();
+  let content = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//HiveTimetabler//EN"
+  ];
 
-  checkboxes.forEach(cb => {
-    if (cb.checked) {
-      const start = new Date(cb.dataset.start);
-      const end = new Date(cb.dataset.end);
-      cal.addEvent(
-        cb.dataset.artist,
-        cb.dataset.stage,
-        'Ferropolis',
-        [
-          start.getFullYear(),
-          start.getMonth() + 1,
-          start.getDate(),
-          start.getHours(),
-          start.getMinutes()
-        ],
-        [
-          end.getFullYear(),
-          end.getMonth() + 1,
-          end.getDate(),
-          end.getHours(),
-          end.getMinutes()
-        ]
+  checkboxes.forEach((cb, index) => {
+    if (!cb.checked) return;
+
+    const start = new Date(cb.dataset.start);
+    const end = new Date(cb.dataset.end);
+    const stage = cb.dataset.stage;
+    const artist = cb.dataset.artist;
+
+    const formatDate = (d) => {
+      const pad = (n) => (n < 10 ? '0' + n : n);
+      return (
+        d.getUTCFullYear().toString() +
+        pad(d.getUTCMonth() + 1) +
+        pad(d.getUTCDate()) + "T" +
+        pad(d.getUTCHours()) +
+        pad(d.getUTCMinutes()) +
+        "00Z"
       );
-    }
+    };
+
+    content.push(
+      "BEGIN:VEVENT",
+      `UID:${index}@hivefestival2025`,
+      `SUMMARY:${artist}`,
+      `DESCRIPTION:${stage}`,
+      `LOCATION:Ferropolis`,
+      `DTSTART:${formatDate(start)}`,
+      `DTEND:${formatDate(end)}`,
+      "END:VEVENT"
+    );
   });
 
-  cal.download('hive-festival-2025');
+  content.push("END:VCALENDAR");
 
-  // Zeige Hinweis oder Link nach dem Download
-  const notice = document.createElement('p');
-  notice.innerHTML = `
-    <strong>✅ Datei wurde erstellt!</strong><br/>
-    Falls sich dein Kalender nicht automatisch öffnet, kannst du sie manuell öffnen:<br/>
-    <a href="hive-festival-2025.ics" download style="color:#ffcc00;">hive-festival-2025.ics manuell öffnen</a>
-  `;
-  notice.style.textAlign = "center";
-  notice.style.marginTop = "1rem";
-  document.querySelector("main").appendChild(notice);
+  const blob = new Blob([content.join("\r\n")], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "hive-festival-2025.ics";
+  a.style.display = "none";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
 loadActs();
