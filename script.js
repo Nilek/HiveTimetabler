@@ -106,8 +106,8 @@ function downloadICS() {
       "BEGIN:VEVENT",
       `UID:${index}@hivefestival2025`,
       `SUMMARY:${artist}`,
-      `DESCRIPTION:${stage}`,
-      `LOCATION:Ferropolis`,
+      `DESCRIPTION:Hive Festival 19.06 - 21.06 2025 - importiert über @nilek HiveTimetabler`,
+      `LOCATION:${stage}`,
       `DTSTART:${formatDate(start)}`,
       `DTEND:${formatDate(end)}`,
       "END:VEVENT"
