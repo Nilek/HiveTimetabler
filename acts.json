@@ -237,8 +237,35 @@
     { "artist": "JUNX PUNX", "stage": "HiTech Hive", "start": "2025-08-17T14:00:00", "end": "2025-08-17T15:00:00" },
     { "artist": "PHILOSO", "stage": "HiTech Hive", "start": "2025-08-17T15:00:00", "end": "2025-08-17T16:30:00" },
     { "artist": "ACID COMBO", "stage": "HiTech Hive", "start": "2025-08-17T16:30:00", "end": "2025-08-17T18:00:00" },
-    { "artist": "JONNY CRASH", "stage": "HiTech Hive", "start": "2025-08-17T18:00:00", "end": "2025-08-17T19:30:00" }
+    { "artist": "JONNY CRASH", "stage": "HiTech Hive", "start": "2025-08-17T18:00:00", "end": "2025-08-17T19:30:00" },
 
-      
+    { "artist": "TAUCETI", "stage": "Junkyard", "start": "2025-08-15T12:00:00", "end": "2025-08-15T15:00:00" },
+    { "artist": "STEPHANIE SYKES", "stage": "Junkyard", "start": "2025-08-15T15:00:00", "end": "2025-08-15T18:00:00" },
+    { "artist": "PHASE FATALE", "stage": "Junkyard", "start": "2025-08-15T18:00:00", "end": "2025-08-15T19:30:00" },
+    { "artist": "UFO95 (LIVE)", "stage": "Junkyard", "start": "2025-08-15T19:30:00", "end": "2025-08-15T21:00:00" },
+    { "artist": "SETAOC MASS", "stage": "Junkyard", "start": "2025-08-15T21:00:00", "end": "2025-08-15T22:30:00" },
+    { "artist": "OSCAR MULERO", "stage": "Junkyard", "start": "2025-08-15T22:30:00", "end": "2025-08-15T23:30:00" },
+    { "artist": "BEN KLOCK", "stage": "Junkyard", "start": "2025-08-15T23:30:00", "end": "2025-08-16T01:30:00" },
+    { "artist": "CHRIS LIEBING", "stage": "Junkyard", "start": "2025-08-16T01:30:00", "end": "2025-08-16T03:00:00" },
+    { "artist": "STEF (LIVE)", "stage": "Junkyard", "start": "2025-08-16T03:00:00", "end": "2025-08-16T04:30:00" },
+    { "artist": "MENDESIDIS", "stage": "Junkyard", "start": "2025-08-16T04:30:00", "end": "2025-08-16T06:00:00" },
+    { "artist": "CHLÄR", "stage": "Junkyard", "start": "2025-08-16T06:00:00", "end": "2025-08-16T07:30:00" },
+    { "artist": "PARRISH SMITH", "stage": "Junkyard", "start": "2025-08-16T07:30:00", "end": "2025-08-16T09:00:00" },
+
+    { "artist": "TØXYBLUE", "stage": "Junkyard", "start": "2025-08-16T16:30:00", "end": "2025-08-16T18:00:00" },
+    { "artist": "SCHROTTHAGEN", "stage": "Junkyard", "start": "2025-08-16T18:00:00", "end": "2025-08-16T19:30:00" },
+    { "artist": "VAL VASHAR", "stage": "Junkyard", "start": "2025-08-16T19:30:00", "end": "2025-08-16T21:00:00" },
+    { "artist": "ANSWER CODE REQUEST b2b SORAYA", "stage": "Junkyard", "start": "2025-08-16T21:00:00", "end": "2025-08-16T22:30:00" },
+    { "artist": "TOMMY FOUR SEVEN", "stage": "Junkyard", "start": "2025-08-16T22:30:00", "end": "2025-08-17T00:00:00" },
+    { "artist": "SPFDJ", "stage": "Junkyard", "start": "2025-08-17T00:00:00", "end": "2025-08-17T01:30:00" },
+    { "artist": "ADIEL", "stage": "Junkyard", "start": "2025-08-17T01:30:00", "end": "2025-08-17T03:00:00" },
+    { "artist": "DAX J", "stage": "Junkyard", "start": "2025-08-17T03:00:00", "end": "2025-08-17T04:30:00" },
+    { "artist": "ADRIANA LOPEZ", "stage": "Junkyard", "start": "2025-08-17T04:30:00", "end": "2025-08-17T06:00:00" },
+    { "artist": "MATRIXXMAN", "stage": "Junkyard", "start": "2025-08-17T06:00:00", "end": "2025-08-17T07:30:00" },
+
+    { "artist": "VILLAR", "stage": "Junkyard", "start": "2025-08-17T13:00:00", "end": "2025-08-17T15:00:00" },
+    { "artist": "NUSHA", "stage": "Junkyard", "start": "2025-08-17T15:00:00", "end": "2025-08-17T16:30:00" },
+    { "artist": "LEVT", "stage": "Junkyard", "start": "2025-08-17T16:30:00", "end": "2025-08-17T18:00:00" }
+
   ]
   
