@@ -1,0 +1,13 @@
+# Hive Festival 2025 – Kalender Generator 🐝
+
+Dieses Projekt ist eine kleine Fan-Anwendung, um den Besuch beim Hive Festival 2025 (Ferropolis) besser zu planen.
+
+## 🧠 Idee
+
+Das Festival bietet viele spannende Acts auf mehreren Bühnen – manchmal zur gleichen Zeit. Mit dieser Anwendung kannst du:
+
+- deine persönlichen Favoriten auswählen,
+- automatisch eine `.ics`-Kalenderdatei generieren,
+- und sie in deinen Kalender (Google, Apple, Outlook etc.) importieren.
+
+So hast du deinen persönlichen Timetable immer dabei!

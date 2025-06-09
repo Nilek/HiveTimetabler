@@ -1,0 +1,16 @@
+# macOS/Windows/Linux Systemdateien
+.DS_Store
+Thumbs.db
+
+# Editor-/IDE-Dateien
+.vscode/
+*.log
+*.swp
+
+# Backup- oder temporäre Dateien
+*~
+*.bak
+*.tmp
+
+# ZIP-Archive
+*.zip
