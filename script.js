@@ -86,6 +86,17 @@ function downloadICS() {
   });
 
   cal.download('hive-festival-2025');
+
+  // Zeige Hinweis oder Link nach dem Download
+  const notice = document.createElement('p');
+  notice.innerHTML = `
+    <strong>✅ Datei wurde erstellt!</strong><br/>
+    Falls sich dein Kalender nicht automatisch öffnet, kannst du sie manuell öffnen:<br/>
+    <a href="hive-festival-2025.ics" download style="color:#ffcc00;">hive-festival-2025.ics manuell öffnen</a>
+  `;
+  notice.style.textAlign = "center";
+  notice.style.marginTop = "1rem";
+  document.querySelector("main").appendChild(notice);
 }
 
 loadActs();
