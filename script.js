@@ -108,6 +108,14 @@ function downloadICS() {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
+
+  const notice = document.createElement('p');
+notice.innerHTML = `
+  ✅ Deine Kalender-Datei ist bereit.<br/>
+  <a href="${url}" download="hive-festival-2025.ics">📅 Manuell öffnen</a>
+`;
+document.body.appendChild(notice);
+
 }
 
 loadActs();
