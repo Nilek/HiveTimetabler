@@ -57,7 +57,7 @@ function renderGroupedActs(acts, colorMap) {
 
 function downloadICS() {
   const checkboxes = document.querySelectorAll('input[type=checkbox]');
-  const cal = script();
+  const cal = ics();
 
   checkboxes.forEach(cb => {
     if (cb.checked) {
