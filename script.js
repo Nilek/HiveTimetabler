@@ -34,25 +34,44 @@ function renderGroupedActs(acts, colorMap) {
     heading.style.color = 'white';
     column.appendChild(heading);
 
+    const actsByDay = {};
     grouped[stage].forEach(act => {
-      const item = document.createElement('div');
-      item.className = 'act-item';
+      const dayKey = new Date(act.start).toDateString();
+      if (!actsByDay[dayKey]) actsByDay[dayKey] = [];
+      actsByDay[dayKey].push(act);
+    });
 
-      const label = document.createElement('label');
-      label.innerHTML = `
-        <input type="checkbox" data-artist="${act.artist}" data-start="${act.start}" data-end="${act.end}" data-stage="${act.stage}">
-        <strong>${act.artist}</strong><br/>
-        <small>${new Date(act.start).toLocaleString()} – ${new Date(act.end).toLocaleTimeString()}</small>
-      `;
+    Object.keys(actsByDay).forEach(dayKey => {
+      const dateHeader = document.createElement('h3');
+      dateHeader.textContent = formatDateHeading(dayKey);
+      dateHeader.style.color = '#ffd';
+      column.appendChild(dateHeader);
 
-      item.appendChild(label);
-      column.appendChild(item);
+      actsByDay[dayKey].forEach(act => {
+        const item = document.createElement('div');
+        item.className = 'act-item';
+
+        const label = document.createElement('label');
+        label.innerHTML = `
+          <input type="checkbox" data-artist="${act.artist}" data-start="${act.start}" data-end="${act.end}" data-stage="${act.stage}">
+          <strong>${act.artist}</strong><br/>
+          <small>${new Date(act.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} – ${new Date(act.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</small>
+        `;
+
+        item.appendChild(label);
+        column.appendChild(item);
+      });
     });
 
     wrapper.appendChild(column);
   });
 
   document.getElementById('download-btn').addEventListener('click', () => downloadICS());
+}
+
+function formatDateHeading(dateString) {
+  const d = new Date(dateString);
+  return d.toLocaleDateString('de-DE', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 function downloadICS() {
